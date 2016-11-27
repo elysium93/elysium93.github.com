@@ -3,90 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        *{
-            padding: 0;
-            margin: 0;
-        }
-        div{
-            width: 300px;
-            height:300px;
-            border: 1px solid #000;
-            border-radius: 50%;
-            position: absolute;
-            left:50%;
-            top:50%;
-            margin-left: -150px;
-            margin-top: -150px;
-        }
-        span{
-            width: 50px;
-            height:50px;
-            background: red;
-            border-radius: 50%;
-            position: absolute;
-            left: 50%;
-            top: 0;
-            margin-left: -25px;
-            margin-top: -25px;
-        }
-    </style>
-    <script>
-        function d2a(n){
-            return n*Math.PI/180;
-        }
-        window.onload=function(){
-            var oBox = document.getElementById('box');
-            var R = oBox.offsetWidth/2;
-            var N = 10;
-
-            for(var i=0;i<N;i++){
-                var oSpan = document.createElement('span');
-                oBox.appendChild(oSpan);
-            }
-
-            var aSpan = oBox.children;
-            var bLock = true;
-            oBox.onclick = function(){
-                if(bLock){
-                    for(var i =0;i<aSpan.length;i++){
-                        move(aSpan[i],i*360/N);
-                    }
-                }else {
-                    for(var i=0;i<aSpan.length;i++){
-                        move(aSpan[i],0);
-                    }
-                }
-                bLock = !bLock;
-            }
-            function move(obj,iTarget){
-                var start = obj.a||0;
-                var dis = iTarget-start;
-                var count = Math.floor(1000/30);
-                var n =0;
-                clearInterval(obj.timer);
-                obj.timer = setInterval(function(){
-                    n++;
-                    var a = 1-n/count;
-                    var cur = start+dis*(1-Math.pow(a,3));
-                    obj.a = cur;
-
-                    var x = R+R*Math.sin(d2a(cur));
-                    var y = R-R*Math.cos(d2a(cur));
-
-                    obj.style.left = x+'px';
-                    obj.style.top = y+'px';
-
-                    if(n==count){
-                        clearInterval(obj.timer);
-                    }
-                },30);
-            }
-        }
-    </script>
+    <link href="css/base.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
 </head>
+<script src="js/jquery.min.js"></script>
+<script src="js/main.min.js"></script>
 <body>
-<div id="box">
+<div id="header" class="header-box">
+    <div class="nav clearfix w h120" id="nav">
+        <h1 class="logo fl h120"></h1>
+        <ul class="fr nav-list h120">
+            <li><a href="#header">首页</a> </li>
+            <li><a href="#me">关于我</a> </li>
+            <li><a href="#works">我的作品</a> </li>
+            <li><a href="#contact">联系我</a> </li>
+            <li class="nav-bg"></li>
+        </ul>
+    </div>
+    <div class="nav-icon">
+        <span></span>
+        <span class="center"></span>
+        <span></span>
+    </div>
+</div>
+<div class="banner w h662">
+    <div class="banner-box">
+        <div class="bg w h662">
+            <h2 class="text">“WELCOME TO MY WEBSITE”</h2>
+        </div>
+        <div class="bg w h662">
+            <h2 class="text">“I'M A FRONT-END ENGINEER”</h2>
+        </div>
+        <div class="bg w h662">
+            <h2 class="text">“HERE ARE SOME OF MY WORKS”</h2>
+        </div>
+        <div class="bg w h662">
+            <h2 class="text">“THANKS FOR YOUR APPRECIATE”</h2>
+        </div>
+        <ul class="nav-button-bar clearfix">
+            <li class="fl on"></li>
+            <li class="fl"></li>
+            <li class="fl"></li>
+            <li class="fl"></li>
+        </ul>
+        <i class="ban-left"></i>
+        <i class="ban-right"></i>
+    </div>
+</div>
+<div id="me" class="about w">
+    <div class="con">
+        <p>hello,everybody!</p>
+        <p>我是江天添，一个初涉前端的菜鸟工程师。</p>
+        <p>欢迎来访我的个人网站，希望你能喜欢！如果有什么建议，可以联系我。以上~</p>
+    </div>
+</div>
+<div class="about-me w h662">
+    <div class="bg w"></div>
+    <div class="info">
+        <h2>江天添<span>初级前端开发工程师</span></h2>
+        <ul class="skill" id="skill">
+            <li><i class="blue"></i>javascript</li>
+            <li><i class="blue"></i>html&css</li>
+            <li><i class="gray"></i>photoshop</li>
+            <li><i class="lightgrey"></i>PHP&ASP.NET</li>
+        </ul>
+        <ul class="skill-detail">
+            <li class="skill-box">
+                <ul>
+                    <li><i></i>精通原生javascript，能脱离JS框架进行开发。</li>
+                    <li><i></i>熟练使用JQuery、AngularJS、zepto等框架。</li>
+                    <li><i></i>掌握JS核心技术，如DOM,BOM,ajax和jsonp。</li>
+                    <li><i></i>能运用模块化、面向对象的方式编程。</li>
+                    <li><i></i>熟练使用代码调试工具。懂得压缩和反压缩。</li>
+                    <li><i></i>熟练使用代码自动构建工具，如Gulp、Grunt。</li>
+                </ul>
+            </li>
+            <li class="skill-box">
+                <ul>
+                    <li><i></i>精通html+css,能写出兼容各主流浏览器的页面。</li>
+                    <li><i></i>了解w3c标准，了解标签语义化。</li>
+                    <li><i></i>掌握HTML5和CSS3技术，能用新的标签和样式写出更适合现代浏览器的页面。</li>
+                    <li><i></i>熟练掌握移动端开发技巧。</li>
+                </ul>
+            </li>
+            <li class="skill-box">
+                <ul>
+                    <li><i></i>熟练使用photoshop实现页面的切割和导出。</li>
+                    <li><i></i>能进行简单的平面设计。</li>
+                </ul>
+            </li>
+            <li class="skill-box">
+                <ul>
+                    <li><i></i>了解PHP常用语法，能阅读PHP文件，便于交互。</li>
+                    <li><i></i>曾用ASP.NET进行过系统开发。</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="works" class="works w clearfix">
+    <ul class="works-list clearfix fl">
+        <li><span>javascript</span><img src="img/zp1.PNG" alt="" /><a href="demo/accordion.html" target="_blank"></a> </li>
+        <li><span>CSS3</span><img src="img/zp2.jpg" alt="" /><a href="demo/boom.html" target="_blank"></a>  </li>
+        <li><span>CSS3</span><img src="img/zp3.PNG" alt="" /><a href="demo/3dpicture-ring.html" target="_blank"></a>  </li>
+        <li><span>javascript</span><img src="img/zp4.PNG" alt="" /><a href="demo/apple.html" target="_blank"></a>  </li>
+        <li><span>Canvas</span><img src="img/zp5.PNG" alt="" /><a href="demo/window-screensaver.html" target="_blank"></a>  </li>
+        <li><span>Canvas</span><img src="img/zp6.PNG" alt="" /> <a href="demo/fish/demo.html" target="_blank"></a> </li>
+    </ul>
+    <div class="text fl">
+        <div class="con">
+            <p>这是我的部分作品。</p>
+            <p>如果你感兴趣，可以点击图片链接查看效果。</p>
+            <p>如果想浏览更多作品，请访问我的GitHub。</p>
+        </div>
+        <a class="btn" href="https://github.com/elysium93" target="_blank">GitHub</a>
+    </div>
+</div>
+<div id="contact" class="contact w">
+    <ul class="clearfix">
+        <li></li>
+        <li><a href="https://www.facebook.com/profile.php?id=100011554598223" target="_blank"></a> </li>
+        <li></li>
+        <li><a href="http://weibo.com/2959030813/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank"></a> </li>
+        <li><a href="https://www.instagram.com/elysium2226/" target="_blank"></a> </li>
+    </ul>
+    <div class="box1">631565283</div>
+    <div class="box2">titianjiangweb<br />@163.com</div>
 </div>
 </body>
 </html>

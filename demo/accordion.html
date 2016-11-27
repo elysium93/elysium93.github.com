@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        ul{
+            width: 600px;
+            height:400px;
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        li{
+            list-style: none;
+            width: 600px;
+            height:400px;
+            float: left;
+        }
+    </style>
+    <script src="js/move4.js"></script>
+    <script>
+        window.onload= function () {
+            var oUl1 =document.getElementById('ul1');
+            var aLi = oUl1.children;
+            var aPos = [];
+            for(var i=0;i<aLi.length;i++){
+                aPos.push({left:aLi[i].offsetLeft});
+            }
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].style.position='absolute';
+                aLi[i].style.left=aPos[i].left+'px';
+            }
+            var w = 30;
+            for(var i=1;i<aLi.length;i++){
+                aLi[i].style.left=oUl1.offsetWidth-w*(aLi.length-i)+'px';
+            }
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].index=i;
+                aLi[i].onmouseover=function(){
+                    for(var i=1;i<aLi.length;i++){
+                        if(this.index>=i){
+                            //aLi[i].style.left=w*i+'px';
+                            move(aLi[i],{left:w*i},{duration:500,easing:'linear'});
+                        }else{
+                            //aLi[i].style.left=oUl1.offsetWidth-w*(aLi.length-i)+'px';
+                            move(aLi[i],{left:oUl1.offsetWidth-w*(aLi.length-i)},{duration:500,easing:'linear'});
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<ul id="ul1">
+    <li style="background: #f8f864"></li>
+    <li style="background: #cc5040"></li>
+    <li style="background: #cca5c3"></li>
+    <li style="background: #6acc8c"></li>
+    <li style="background: #8698cc"></li>
+    <li style="background: #f86765"></li>
+</ul>
+</body>
+</html>
